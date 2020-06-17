@@ -1,0 +1,6 @@
+env
+*pycache*
+*secret*
+*.pyc
+.DS_Store
+summary.js
