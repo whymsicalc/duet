@@ -28,3 +28,26 @@ class Board(db.Model):
     status = db.Column(db.String(20), nullable=False)
 
     games = db.relationship("Game", backref="boards")
+
+
+def connect_to_db(app, database='postgres:///codenames'):
+    """Connect the database to our Flask app."""
+
+    # Configure to use our database
+    # Database URI that should be used for the connection: kitchens
+    app.config["SQLALCHEMY_DATABASE_URI"] = database
+    # SQLAlchemy will NOT log all the statements issued to stderr when set to False
+    app.config["SQLALCHEMY_ECHO"] = False
+    # SQLAlchemy will NOT track modifications of objects
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    # Connect app with db
+    db.app = app
+    # Initialize app
+    db.init_app(app)
+
+
+if __name__ == "__main__":
+    # If we run file interactively, we can work with database directly.
+
+    from server import app
+    connect_to_db(app)
