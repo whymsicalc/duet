@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="/create-game" method="POST">
+    What's your name? 
+    <input name="player1" placeholder="Name">
+    <br>
+    <button type="submit">Create Game</button>
+</form>
+{% endblock %}
