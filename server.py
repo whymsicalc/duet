@@ -1,10 +1,8 @@
 from flask import Flask, request, render_template, jsonify
+from static.words import words
+import random
 
 app = Flask(__name__)
-
-BOARDS = []
-
-WORDS = []
 
 @app.route("/")
 def homepage():
@@ -15,7 +13,8 @@ def homepage():
 def create_game():
     """Create game for given user."""
     player1 = request.form.get("player1")
-    return render_template("game_page.html", player1=player1)
+    game_words = random.sample(words, 25)
+    return render_template("game_page.html", player1=player1, game_words=game_words)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
