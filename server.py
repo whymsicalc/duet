@@ -1,5 +1,7 @@
 from flask import Flask, request, render_template, jsonify
-from static.words import words
+from flask_sqlalchemy import SQLAlchemy
+from constants.words import WORDS
+from constants.boards import BOARDS
 import random
 
 app = Flask(__name__)
