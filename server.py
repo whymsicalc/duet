@@ -15,8 +15,13 @@ def homepage():
 def create_game():
     """Create game for given user."""
     player1 = request.form.get("player1")
-    game_words = random.sample(words, 25)
-    return render_template("game_page.html", player1=player1, game_words=game_words)
+    game_words = random.sample(WORDS, 25)
+    # save into database
+    game_board = random.choice(BOARDS)
+    # save board index instead of the entire board and index into board
+    # save into database
+    # game link - game PK
+    return render_template("game_page.html", player1=player1, game_words=game_words, game_board=game_board)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
