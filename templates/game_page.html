@@ -2,5 +2,36 @@
 
 {% block content %}
 Hello {{player1}}!</br>
-{{game_words}}
+{% for words in [game_words[0:5], game_words[5:10], game_words[10:15], game_words[15:20], game_words[20:25]] %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+    {% for word in words %}
+    <div class="col-sm" >
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{word}}</h5>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+</div><br>
+{% endfor %}
+{{game_board}}</br>
+{{game_board[0][0]}}
+
+{% if game_board[0][0].value == 'NEUTRAL' %}
+    Neutral
+{% endif %}
+
+<!-- ([State.NEUTRAL, State.GREEN, State.BLACK, State.NEUTRAL, State.NEUTRAL,
+    State.NEUTRAL, State.NEUTRAL, State.GREEN, State.GREEN, State.GREEN,
+    State.NEUTRAL, State.NEUTRAL, State.NEUTRAL, State.BLACK, State.GREEN,
+    State.NEUTRAL, State.BLACK, State.NEUTRAL, State.GREEN, State.GREEN,
+    State.NEUTRAL, State.NEUTRAL, State.GREEN, State.NEUTRAL, State.GREEN], 
+[State.GREEN, State.NEUTRAL, State.NEUTRAL, State.NEUTRAL, State.GREEN,
+    State.NEUTRAL, State.BLACK, State.GREEN, State.NEUTRAL, State.GREEN,
+    State.NEUTRAL, State.NEUTRAL, State.NEUTRAL, State.GREEN, State.BLACK,
+    State.BLACK, State.NEUTRAL, State.GREEN, State.NEUTRAL, State.NEUTRAL,
+    State.GREEN, State.NEUTRAL, State.NEUTRAL, State.GREEN, State.GREEN]) -->
 {% endblock %}
