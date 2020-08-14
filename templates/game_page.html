@@ -1,15 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
-Hello {{player1}}!</br>
-{% for words in [game_words[0:5], game_words[5:10], game_words[10:15], game_words[15:20], game_words[20:25]] %}
+<h1>Hello {{player1}}!</h1>
+{% for fives in [pairs[0:5], pairs[5:10], pairs[10:15], pairs[15:20], pairs[20:25]] %}
 <div class="container-fluid">
     <div class="row justify-content-center">
-    {% for word in words %}
+    {% for pair in fives %}
     <div class="col-sm" >
-        <div class="card">
+        {% if pair[1].value == 'NEUTRAL' %}
+        <div class="card bg-light mb-3">
+        {% elif pair[1].value == 'GREEN' %}
+        <div class="card text-white bg-success mb-3">
+        {% else %}
+        <div class="card text-white bg-dark mb-3">
+        {% endif %}
             <div class="card-body">
-                <h5 class="card-title">{{word}}</h5>
+                <h5 class="card-title">{{pair[0]}}</h5>
             </div>
         </div>
     </div>
@@ -17,21 +23,6 @@ Hello {{player1}}!</br>
     </div>
 </div><br>
 {% endfor %}
-{{game_board}}</br>
-{{game_board[0][0]}}
 
-{% if game_board[0][0].value == 'NEUTRAL' %}
-    Neutral
-{% endif %}
-
-<!-- ([State.NEUTRAL, State.GREEN, State.BLACK, State.NEUTRAL, State.NEUTRAL,
-    State.NEUTRAL, State.NEUTRAL, State.GREEN, State.GREEN, State.GREEN,
-    State.NEUTRAL, State.NEUTRAL, State.NEUTRAL, State.BLACK, State.GREEN,
-    State.NEUTRAL, State.BLACK, State.NEUTRAL, State.GREEN, State.GREEN,
-    State.NEUTRAL, State.NEUTRAL, State.GREEN, State.NEUTRAL, State.GREEN], 
-[State.GREEN, State.NEUTRAL, State.NEUTRAL, State.NEUTRAL, State.GREEN,
-    State.NEUTRAL, State.BLACK, State.GREEN, State.NEUTRAL, State.GREEN,
-    State.NEUTRAL, State.NEUTRAL, State.NEUTRAL, State.GREEN, State.BLACK,
-    State.BLACK, State.NEUTRAL, State.GREEN, State.NEUTRAL, State.NEUTRAL,
-    State.GREEN, State.NEUTRAL, State.NEUTRAL, State.GREEN, State.GREEN]) -->
+<!-- {{game_board}}</br> -->
 {% endblock %}
